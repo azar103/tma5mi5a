@@ -10,10 +10,18 @@ class HomeScreen extends React.Component {
         super(props)
     
     }
+
+    _navigate = (title, url, time, ingredients, categoryId) => {
+        this.props.navigation.navigate('RecipeDetailScreen', 
+          {title:  title, 
+           photo_url: url, 
+           time: time,
+           ingredients: ingredients,
+           categoryId:  categoryId
+        })
+    }
  
   render() {
-    const recipesSorted = 
-    console.log(recipesSorted)
       return(
           <ScrollView style={styles.main_container}>
              <MyCarousel />  
@@ -29,6 +37,7 @@ class HomeScreen extends React.Component {
                    renderItem={({item}) => 
                     <Recipe
                          recipe={item}
+                         navigate={this._navigate}
                      />
                     }
                    keyExtractor={item => item.recipeId.toString()} 
