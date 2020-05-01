@@ -15,6 +15,7 @@
     "@react-navigation/native": "^5.1.6",
     "moment": "^2.24.0",
     "react": "16.11.0",
+    "react-magic-slider-dots": "^1.2.0",
     "react-native": "0.62.2",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.6.1",
@@ -30,8 +31,10 @@
     "react-navigation-stack": "^2.3.11",
     "react-navigation-tabs": "^2.8.11",
     "react-redux": "^7.2.0",
+    "react-slick": "^0.25.2",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {

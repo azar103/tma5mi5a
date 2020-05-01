@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
-import { Card } from 'react-native-elements'
+import { View, Text, Image, StyleSheet, Dimensions, useWindowDimensions } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import {recipes} from '../Helpers/data'
 
 class MyCarousel extends React.Component {
     constructor(props) {
         super(props)
+        this.state={
+            activeTab: 0
+        }
     }
    _renderItem = ({item, index}) => {
        return(
@@ -17,21 +19,27 @@ class MyCarousel extends React.Component {
              source={{uri: item.photo_url}}
              />
 
+           <Text style={styles.text}>{item.title}</Text>
+
         </View>
        )
    }
   render() {
-      const {width, height} =  useWindowDimensions()
+    console.disableYellowBox = true;
+      const {width: viewportwidth} =  Dimensions.get('screen')
       return(
+          
         <View style={styles.main_container}>
          <Carousel
            ref={(c) => {this._carousel = c;}}
-           data={recipes}
-           sliderWidth={width}
-           itemWidth={height/4}
+           data={recipes.slice(0, 3)}
+           sliderWidth={viewportwidth}
+           itemWidth={viewportwidth}
+           slideStyle={{width: viewportwidth}}
            renderItem={this._renderItem}
            horizontal={true}
          />
+     
        </View>  
       )
   }
@@ -40,15 +48,28 @@ class MyCarousel extends React.Component {
 
 const styles = StyleSheet.create({
     slides: {
-        flex: 1
+        flex: 1,
+        marginLeft: -22
+    
     },
     img_style: {
-        height: 200
+        height: 300
     },
     main_container: {
         flex: 1,
         alignContent:'center',
         justifyContent:'center'
+    },
+    text: {
+        position:"absolute", 
+        top:250, 
+        color:'white', 
+        fontSize: 25,
+        fontWeight:"bold",
+        left:50,
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
     }
 })
 

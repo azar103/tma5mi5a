@@ -17,7 +17,7 @@ class HomeScreen extends React.Component {
       return(
           <ScrollView style={styles.main_container}>
              <MyCarousel />  
-             <View style={{flex: 1}}>
+             <View style={{flex: 1, padding: 16}}>
               <View style={styles.trend_view}>
               
                <Text style={styles.text}>
@@ -69,8 +69,7 @@ class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
     main_container: {
-        flex: 1,
-        padding: 16
+        flex: 1
     },
     text: {
         color: '#3A3739',
