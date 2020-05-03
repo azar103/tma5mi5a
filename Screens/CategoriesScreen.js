@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import {categories, recipes} from '../Helpers/data'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import { getCountRecipesByCategory } from '../Helpers/functions'
+
+
 class CategoriesScreen extends React.Component {
     constructor(props) {
         super(props)

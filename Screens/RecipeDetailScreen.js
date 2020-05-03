@@ -73,7 +73,7 @@ class RecipeDetailScreen extends React.Component {
                            color="#37d67a"
                            size={25}
                          />
-                         <Text style={styles.label}>{categories[categoryId].name}</Text>
+                         <Text style={styles.label}>{categories[categoryId-1].name}</Text>
                     </View>
                     <View style={styles.label_icon}>
                          <Icon 

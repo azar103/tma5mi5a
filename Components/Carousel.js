@@ -9,6 +9,7 @@ class MyCarousel extends React.Component {
         this.state={
             activeTab: 0
         }
+
     }
    _renderItem = ({item, index}) => {
        return(
@@ -24,8 +25,19 @@ class MyCarousel extends React.Component {
         </View>
        )
    }
+   
+   fontSizer (screenWidth) {
+    if(screenWidth > 400){
+      return 18;
+    }else if(screenWidth > 250){
+      return 14;
+    }else { 
+      return 12;
+    }
+  }
   render() {
     console.disableYellowBox = true;
+
       const {width: viewportwidth} =  Dimensions.get('screen')
       return(
           
@@ -49,11 +61,14 @@ class MyCarousel extends React.Component {
 const styles = StyleSheet.create({
     slides: {
         flex: 1,
-        marginLeft: -22
+        marginLeft: -20,
+     
     
     },
     img_style: {
-        height: 300
+        height: 200,
+        position:"relative",
+       
     },
     main_container: {
         flex: 1,
@@ -62,11 +77,11 @@ const styles = StyleSheet.create({
     },
     text: {
         position:"absolute", 
-        top:250, 
+        top:150, 
         color:'white', 
-        fontSize: 25,
+        fontSize: 20,
         fontWeight:"bold",
-        left:125,
+        left:120,
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10
