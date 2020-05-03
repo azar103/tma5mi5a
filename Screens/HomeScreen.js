@@ -11,13 +11,14 @@ class HomeScreen extends React.Component {
     
     }
 
-    _navigate = (title, url, time, ingredients, categoryId) => {
+    _navigate = (title, url, time, ingredients, categoryId, steps) => {
         this.props.navigation.navigate('RecipeDetailScreen', 
           {title:  title, 
            photo_url: url, 
            time: time,
            ingredients: ingredients,
-           categoryId:  categoryId
+           categoryId:  categoryId,
+           steps: steps
         })
     }
  
@@ -64,6 +65,7 @@ class HomeScreen extends React.Component {
                    renderItem={({item}) => 
                     <Recipe
                          recipe={item}
+                         navigate={this._navigate}
                      />
                     }
                    keyExtractor={item => item.recipeId.toString()} 

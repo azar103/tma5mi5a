@@ -6,6 +6,7 @@ import CategoriesScreen from "../Screens/CategoriesScreen";
 import NewRecipeScreen from "../Screens/NewRecipeScreen";
 import FavoritesScreen from "../Screens/FavoritesScreen";
 import ProfileScreen from "../Screens/ProfileScreen";
+import CategoryDetailScreen from '../Screens/CategoryDetailScreen'
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createAppContainer } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -31,6 +32,12 @@ const CategoriesStack = createStackNavigator({
         navigationOptions: {
             title: 'Categories'
         }
+    },
+    CategoryDetailScreen: {
+        screen: CategoryDetailScreen
+    },
+    RecipeDetailScreen: {
+        screen: RecipeDetailScreen
     }
 })
 

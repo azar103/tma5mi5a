@@ -19,7 +19,8 @@ class Recipe extends React.Component {
                                  recipe.photo_url, 
                                 recipe.time, 
                                 recipe.ingredients,
-                                recipe.categoryId                            
+                                recipe.categoryId,
+                                recipe.steps                            
                                 )}
           >
                <Image 
