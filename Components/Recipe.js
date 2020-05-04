@@ -15,7 +15,9 @@ class Recipe extends React.Component {
       return(
           <TouchableOpacity 
           style={{flex: 1, marginLeft: 7, marginBottom:5}}
-          onPress={()=> navigate(recipe.title, 
+          onPress={()=> navigate(
+                                recipe.recipeId,
+                                recipe.title, 
                                  recipe.photo_url, 
                                 recipe.time, 
                                 recipe.ingredients,

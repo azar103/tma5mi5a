@@ -26,15 +26,7 @@ class MyCarousel extends React.Component {
        )
    }
    
-   fontSizer (screenWidth) {
-    if(screenWidth > 400){
-      return 18;
-    }else if(screenWidth > 250){
-      return 14;
-    }else { 
-      return 12;
-    }
-  }
+
   render() {
     console.disableYellowBox = true;
 

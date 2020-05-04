@@ -11,9 +11,11 @@ class HomeScreen extends React.Component {
     
     }
 
-    _navigate = (title, url, time, ingredients, categoryId, steps) => {
+    _navigate = (id, title, url, time, ingredients, categoryId, steps) => {
         this.props.navigation.navigate('RecipeDetailScreen', 
-          {title:  title, 
+          {
+           id: id,   
+           title:  title, 
            photo_url: url, 
            time: time,
            ingredients: ingredients,
@@ -49,7 +51,8 @@ class HomeScreen extends React.Component {
                <FlatList 
                    horizontal={true}
                    data={categories}
-                   renderItem={({item}) => 
+                   renderItem={
+                    ({item}) => 
                     <Category
                          category={item}
                      />

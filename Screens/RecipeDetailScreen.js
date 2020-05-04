@@ -1,28 +1,31 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacit, BackHandler } from 'react-native'
 import {CheckBox} from 'native-base'
-import { ScrollView } from 'react-native-gesture-handler'
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import { Icon } from 'react-native-elements'
 import {IconFood} from 'react-native-vector-icons/MaterialCommunityIcons'
 import HeartIcon from "react-native-vector-icons/Ionicons";
 import FoodIcon from "react-native-vector-icons/Ionicons";
 import {categories} from '../Helpers/data'
-
+import { connect } from 'react-redux'
+import { createStackNavigator } from 'react-navigation-stack'
+import { NavigationContainer } from '@react-navigation/native';
 
 
 
 class RecipeDetailScreen extends React.Component {
     static navigationOptions = ({navigation}) =>{
-       return {
-           headerTitle: navigation.state.params.title,
-           headerRight: () => <HeartIcon
-            name="ios-heart-empty"
-            size={25}
-            style={{marginRight: 10}}
-           />
-       }
-    }
-    constructor(props) {
+       const {params} = navigation.state
+
+        return {
+            headerTitle: params.title,
+     } }
+           
+         
+        
+       
+       
+       constructor(props) {
         super(props)
         this.state = {
             checkboxesIngredients: this.props.navigation.state.params.ingredients,
@@ -30,6 +33,20 @@ class RecipeDetailScreen extends React.Component {
         }
         
     }
+
+    
+
+    componentDidMount() {
+          this.props.navigation.setParams({
+              id: this.props.navigation.state.params.id                        
+        });
+      }
+
+      componentWillReceiveProps(nextProps) {
+        if (nextProps.recipeProps) {
+          this.props.navigation.setParams({ favoriteRecipes });
+        }
+      }
 
     toggleIngredients = (id) => {
         const changedCheckbox = this.state.checkboxesIngredients.find((cb) => cb.id === id);
@@ -51,20 +68,53 @@ class RecipeDetailScreen extends React.Component {
          this.setState({ checkboxesSteps });
     }
 
+_displayFavoriteImage(){
+  if(this.props.favoriteRecipes.findIndex((item) => item.id === this.props.navigation.state.params.id) === -1){
+      return(
+        <TouchableOpacity style={{justifyContent:'center', alignItems:'center'}}
+        onPress={() => this.props.dispatch({type:'TOGGLE_FAVORITE', value: {id:  this.props.navigation.state.params.id}})}
+        >
 
+
+        <HeartIcon
+                name="ios-heart-empty"
+                size={30}  
+                color="#37d67a"         
+               /> 
+       </TouchableOpacity>         
+      )
+  }else {
+      return(
+        <TouchableOpacity style={{justifyContent:'center', alignItems:'center'}} 
+        onPress={() => this.props.dispatch({type:'TOGGLE_FAVORITE', value: {id:  this.props.navigation.state.params.id}})}
+        >  
+        <HeartIcon
+        name="ios-heart"
+        color="#37d67a"
+        size={40}
+        style={{alignItems:'center', justifyContent:'center'}}
+        
+       />  
+      </TouchableOpacity> 
+      )
+  }
+}
 
 
 
   render() {
       const {title, photo_url, categoryId, time, steps} = this.props.navigation.state.params
       return(
+   
           <ScrollView style={styles.main_container}>
+    
                <Image 
                 source={{uri: photo_url}}
                 style={styles.img_style}
                />
              <View style={styles.content}>
                <View style={styles.header}>
+               {this._displayFavoriteImage()}   
                <Text style={styles.title_style}>{title}</Text>
                <View style={styles.icons_container}>
                     <View style={styles.label_icon}>
@@ -119,8 +169,7 @@ class RecipeDetailScreen extends React.Component {
               <Text style={{fontWeight:"bold", marginLeft:50, fontSize: 20 }}>Etape{ index+1}</Text>    
               <Text style={{marginLeft: 50, fontSize: 20, marginRight: 5}}>{cb.description}</Text>
              </View>
-              </View>
-         
+              </View>        
               )}
               
             </View>  
@@ -130,7 +179,6 @@ class RecipeDetailScreen extends React.Component {
   }
   
 }
-
 const styles = StyleSheet.create({
     main_container: {
         flex: 1,
@@ -213,5 +261,12 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = ({favoriteRecipes}) => {
+    return { favoriteRecipes }
+}
 
-export default RecipeDetailScreen
+    
+   
+
+
+export default connect(mapStateToProps)(RecipeDetailScreen)
