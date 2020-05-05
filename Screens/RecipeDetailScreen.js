@@ -8,8 +8,6 @@ import HeartIcon from "react-native-vector-icons/Ionicons";
 import FoodIcon from "react-native-vector-icons/Ionicons";
 import {categories} from '../Helpers/data'
 import { connect } from 'react-redux'
-import { createStackNavigator } from 'react-navigation-stack'
-import { NavigationContainer } from '@react-navigation/native';
 
 
 
@@ -36,17 +34,8 @@ class RecipeDetailScreen extends React.Component {
 
     
 
-    componentDidMount() {
-          this.props.navigation.setParams({
-              id: this.props.navigation.state.params.id                        
-        });
-      }
+   
 
-      componentWillReceiveProps(nextProps) {
-        if (nextProps.recipeProps) {
-          this.props.navigation.setParams({ favoriteRecipes });
-        }
-      }
 
     toggleIngredients = (id) => {
         const changedCheckbox = this.state.checkboxesIngredients.find((cb) => cb.id === id);
@@ -67,15 +56,31 @@ class RecipeDetailScreen extends React.Component {
 
          this.setState({ checkboxesSteps });
     }
+ _toggleFavorite = () => {
+     const action = {
+       type:'TOGGLE_FAVORITE',
+       value: {    
+        id:  this.props.navigation.state.params.id,
+        categoryId: this.props.navigation.state.params.categoryId,
+        title: this.props.navigation.state.params.title,
+        photo_url: this.props.navigation.state.params.photo_url,
+        ingredients: this.props.navigation.state.params.ingredients,
+        steps: this.props.navigation.state.params.steps
+       }
+    }
+    this.props.dispatch(action) 
+
+}
+ 
+
+ 
 
 _displayFavoriteImage(){
   if(this.props.favoriteRecipes.findIndex((item) => item.id === this.props.navigation.state.params.id) === -1){
       return(
         <TouchableOpacity style={{justifyContent:'center', alignItems:'center'}}
-        onPress={() => this.props.dispatch({type:'TOGGLE_FAVORITE', value: {id:  this.props.navigation.state.params.id}})}
+        onPress={() => this._toggleFavorite()}
         >
-
-
         <HeartIcon
                 name="ios-heart-empty"
                 size={30}  
@@ -86,14 +91,12 @@ _displayFavoriteImage(){
   }else {
       return(
         <TouchableOpacity style={{justifyContent:'center', alignItems:'center'}} 
-        onPress={() => this.props.dispatch({type:'TOGGLE_FAVORITE', value: {id:  this.props.navigation.state.params.id}})}
+        onPress={() => this._toggleFavorite()}
         >  
         <HeartIcon
         name="ios-heart"
         color="#37d67a"
-        size={40}
-        style={{alignItems:'center', justifyContent:'center'}}
-        
+        size={40}    
        />  
       </TouchableOpacity> 
       )
@@ -104,8 +107,9 @@ _displayFavoriteImage(){
 
   render() {
       const {title, photo_url, categoryId, time, steps} = this.props.navigation.state.params
-      return(
-   
+      console.log(this.props.favoriteRecipes)
+
+      return( 
           <ScrollView style={styles.main_container}>
     
                <Image 
@@ -155,9 +159,7 @@ _displayFavoriteImage(){
 <Text style={styles.section_title}>Préparation</Text>  
            <View style={[styles.block, {marginBottom: -18 }]}>
               {this.state.checkboxesSteps.length > 0 && this.state.checkboxesSteps.map( (cb, index) => 
-    
          <View style={{flexDirection: 'row', marginBottom: 20}}>
-             
               <CheckBox 
                 key={cb.id}
                 checked={cb.isChecked}

@@ -18,7 +18,7 @@ class Recipe extends React.Component {
           onPress={()=> navigate(
                                 recipe.recipeId,
                                 recipe.title, 
-                                 recipe.photo_url, 
+                                recipe.photo_url, 
                                 recipe.time, 
                                 recipe.ingredients,
                                 recipe.categoryId,

@@ -1,27 +1,25 @@
-const initialState={ favoriteRecipes: [] }
-function toggleFavorite( state = initialState, action) {
+const initialState = { favoriteRecipes: [] }
+
+function toggleFavorite(state = initialState, action){
     let nextState
     switch (action.type) {
         case 'TOGGLE_FAVORITE':
-            const favoriteIndex = state.favoriteRecipes.findIndex((item) => item.id === action.value.id)
-            if(favoriteIndex !== -1) {
+            const favoriteRecipesIndex = state.favoriteRecipes.findIndex(item => item.id === action.value.id)
+            if(favoriteRecipesIndex !== -1){
                 nextState = {
                     ...state,
-                    favoriteRecipes: state.favoriteRecipes.filter((item, index) => index !== favoriteIndex)
+                    favoriteRecipes: state.favoriteRecipes.filter((item, index) => index !== favoriteRecipesIndex) 
                 }
             } else {
                 nextState = {
-                    ...state, 
+                    ...state,
                     favoriteRecipes: [...state.favoriteRecipes, action.value]
                 }
             }
-            return nextState || state;
+        return nextState || state;
     
         default:
             return state;
     }
-
 }
-
-
 export default toggleFavorite
