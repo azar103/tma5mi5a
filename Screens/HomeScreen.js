@@ -5,11 +5,25 @@ import Category from '../Components/Category'
 import Recipe from '../Components/Recipe'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import MyCarousel from '../Components/Carousel'
+import Icon from 'react-native-vector-icons/Ionicons'
 class HomeScreen extends React.Component {
+    static navigationOptions = ({navigation}) => {
+        return {
+            headerRight: () => 
+            <Icon 
+              name="md-search"
+              onPress={() => navigation.navigate('SearchScreen') }
+              size={25}
+              style={{marginRight: 10   }}
+            />
+        }
+    }
+
     constructor(props) {
         super(props)
-    
     }
+
+    
 
     _navigate = (id, title, url, time, ingredients, categoryId, steps) => {
         this.props.navigation.navigate('RecipeDetailScreen', 

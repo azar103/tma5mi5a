@@ -10,6 +10,7 @@ import CategoryDetailScreen from '../Screens/CategoryDetailScreen'
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createAppContainer } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
+import SearchScreen from '../Screens/SearchScreen';
 
 const HomeStack = createStackNavigator({
     HomeScreen: {
@@ -22,6 +23,12 @@ const HomeStack = createStackNavigator({
         screen: RecipeDetailScreen,
         navigationOptions: {
             title: ''
+        }
+    },
+    SearchScreen: {
+        screen: SearchScreen,
+        navigationOptions: {
+            title: 'Recherche'
         }
     }
 })

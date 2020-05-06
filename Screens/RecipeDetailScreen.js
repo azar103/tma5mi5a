@@ -13,16 +13,13 @@ import { connect } from 'react-redux'
 
 class RecipeDetailScreen extends React.Component {
     static navigationOptions = ({navigation}) =>{
-       const {params} = navigation.state
-
         return {
-            headerTitle: params.title,
-     } }
+            headerTitle: navigation.state.params.title,
+     } 
+    
+    }
            
-         
-        
-       
-       
+
        constructor(props) {
         super(props)
         this.state = {
@@ -69,7 +66,6 @@ class RecipeDetailScreen extends React.Component {
        }
     }
     this.props.dispatch(action) 
-
 }
  
 
@@ -107,8 +103,6 @@ _displayFavoriteImage(){
 
   render() {
       const {title, photo_url, categoryId, time, steps} = this.props.navigation.state.params
-      console.log(this.props.favoriteRecipes)
-
       return( 
           <ScrollView style={styles.main_container}>
     
