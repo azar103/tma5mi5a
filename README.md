@@ -14,6 +14,7 @@ d'ajouter une ou plusieurs recettes aux liste des favoris.
 
 <ul>
   <li>React js</li>
+  <li>React native</li>
   <li>Firebase</li>
   <li>FlatList</li>
   <li>Redux</li>
