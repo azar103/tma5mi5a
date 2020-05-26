@@ -7,11 +7,8 @@ d'ajouter une ou plusieurs recettes aux liste des favoris.
 
 ![](https://i.postimg.cc/SRVfQ7jK/acceuil.png)  ![](https://i.postimg.cc/KYsfB553/detail.png) ![](https://i.postimg.cc/02Wz8H5S/categories.png) 
 
-![](https://i.postimg.cc/02Wz8H5S/categories.png)   ![](https://i.postimg.cc/254jBHY2/categories-detail.png) ![](https://i.postimg.cc/13D1Wfdz/favoris-none.png)
-
-![](https://i.postimg.cc/yNQKR25h/favoris.png) 
+![](https://i.postimg.cc/02Wz8H5S/categories.png)   ![](https://i.postimg.cc/254jBHY2/categories-detail.png) ![](https://i.postimg.cc/13D1Wfdz/favoris-none.png) ![](https://i.postimg.cc/yNQKR25h/favoris.png)![](https://i.postimg.cc/c44VRFRX/search.png)
 # Compétences
-
 <ul>
   <li>React js</li>
   <li>React native</li>
