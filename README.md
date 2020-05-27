@@ -1,6 +1,6 @@
 # tma5mi5a
 
-tma5mi5a vous offre la possibilité de parcourir des recettes ajoutés par d'autre utilisateurs et d'ajouter vos propre recettes en s'authentifiant ainsi que
+tma5mi5a est une application mobile vous offre la possibilité de parcourir des recettes ajoutés par d'autre utilisateurs et d'ajouter vos propre recettes en s'authentifiant ainsi que
 d'ajouter une ou plusieurs recettes aux liste des favoris.
 
 # Aperçu de l'interfaçe
